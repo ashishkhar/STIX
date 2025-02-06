@@ -1,0 +1,210 @@
+{
+    "type": "bundle",
+    "id": "bundle--19df5679-897e-4528-a352-cc0681e3f6d4",
+    "objects": [
+        {
+            "type": "threat-actor",
+            "id": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "name": "Anonymous Sudan",
+            "labels": [
+                "hacktivist",
+                "cyber criminal"
+            ],
+            "aliases": [
+                "Just Evil"
+            ],
+            "description": "Hacktivist group targeting entities associated with RSF support and US foreign policy."
+        },
+        {
+            "type": "campaign",
+            "id": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "name": "Uganda/South Africa/SFO Cyber Rampage",
+            "description": "Coordinated attacks on telecommunications and transportation infrastructure in Uganda, South Africa, and San Francisco.",
+            "first_seen": "2024-02-06T21:12:11Z",
+            "objective": "Disrupt critical infrastructure in retaliation for diplomatic support of RSF"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--f12641f4-47b6-40a8-a0d7-47a28b5d5cb4",
+            "created": "2024-02-07T14:48:34Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "name": "San Francisco International Airport (SFO)",
+            "infrastructure_types": [
+                "transportation"
+            ],
+            "description": "Largest airport in the San Francisco Bay Area targeted for US foreign policy associations"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7",
+            "created": "2024-02-06T21:42:13Z",
+            "modified": "2024-02-06T21:42:13Z",
+            "name": "Cell-C Limited (AS37168)",
+            "infrastructure_types": [
+                "telecommunications"
+            ],
+            "description": "South African mobile network operator with 12.7 million subscribers"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "name": "MTN Uganda (AS20294)",
+            "infrastructure_types": [
+                "telecommunications"
+            ],
+            "description": "Uganda's largest telecom company with 55% market share"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "name": "Airtel Uganda (AS37075)",
+            "infrastructure_types": [
+                "telecommunications"
+            ],
+            "description": "Major Ugandan mobile communications provider"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "name": "Uganda Telecom (AS21491)",
+            "infrastructure_types": [
+                "telecommunications"
+            ],
+            "description": "State-owned ICT network company in Uganda"
+        },
+        {
+            "type": "autonomous-system",
+            "id": "autonomous-system--bdf11fb1-97aa-4978-abe1-0c969ab9fc45",
+            "number": 37168
+        },
+        {
+            "type": "autonomous-system",
+            "id": "autonomous-system--f6334e21-d644-4e49-803b-e4cccdbdb339",
+            "number": 20294
+        },
+        {
+            "type": "autonomous-system",
+            "id": "autonomous-system--fe734320-3694-4e46-b435-8e06ce1b435c",
+            "number": 37075
+        },
+        {
+            "type": "autonomous-system",
+            "id": "autonomous-system--f8e91156-96c5-42d3-a605-c0421c91ad7d",
+            "number": 21491
+        },
+        {
+            "type": "url",
+            "id": "url--be10ca5f-801a-467e-b7f9-967479128899",
+            "value": "https://t.me/xAnonymousSudan"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--96cf7052-cbda-4786-bd80-97af84ca5ca8",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "attributed-to",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--f2f0bd51-437d-4978-bd84-dcf7a57c44ac",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "infrastructure--f12641f4-47b6-40a8-a0d7-47a28b5d5cb4"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--707e1625-3340-4290-be32-a545505c808a",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--9381969c-497a-4b02-8dbf-372a99c1d232",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--6bd48c8e-20ea-4a82-9c70-3096e2fea541",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8028b60e-d0a4-49df-9ea1-beb8480ca7db",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--7b34018c-a842-4059-81b9-edb07735e856",
+            "target_ref": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--f5c5ea7f-7597-47f7-b7e3-2ae1956368ca",
+            "created": "2024-02-06T21:42:13Z",
+            "modified": "2024-02-06T21:42:13Z",
+            "relationship_type": "consists-of",
+            "source_ref": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7",
+            "target_ref": "autonomous-system--bdf11fb1-97aa-4978-abe1-0c969ab9fc45"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--13e4be18-61d3-4039-b67d-c30c8160ca05",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "relationship_type": "consists-of",
+            "source_ref": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321",
+            "target_ref": "autonomous-system--f6334e21-d644-4e49-803b-e4cccdbdb339"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--53051d85-fbd8-44b8-975e-90649adff2c2",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "relationship_type": "consists-of",
+            "source_ref": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f",
+            "target_ref": "autonomous-system--fe734320-3694-4e46-b435-8e06ce1b435c"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8e4d1b11-3965-42d5-93b5-23c17117ab72",
+            "created": "2024-02-06T21:12:11Z",
+            "modified": "2024-02-06T21:12:11Z",
+            "relationship_type": "consists-of",
+            "source_ref": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64",
+            "target_ref": "autonomous-system--f8e91156-96c5-42d3-a605-c0421c91ad7d"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--91532ee9-4254-4c75-a62d-2da529052059",
+            "created": "2024-02-07T14:48:34Z",
+            "modified": "2024-02-07T14:48:34Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192",
+            "target_ref": "url--be10ca5f-801a-467e-b7f9-967479128899"
+        }
+    ]
+}
