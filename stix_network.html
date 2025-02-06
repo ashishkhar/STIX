@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#ff6b6b", "font": {"color": "black"}, "id": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192", "label": "Anonymous Sudan", "shape": "dot", "title": "{\u0027type\u0027: \u0027threat-actor\u0027, \u0027id\u0027: \u0027threat-actor--49da66c2-d301-4887-a571-97bf4f135192\u0027, \u0027created\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027modified\u0027: \u00272024-02-07T14:48:34Z\u0027, \u0027name\u0027: \u0027Anonymous Sudan\u0027, \u0027description\u0027: \u0027Hacktivist group targeting entities associated with RSF support and US foreign policy.\u0027}"}, {"color": "#4ecdc4", "font": {"color": "black"}, "id": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "Uganda/South Africa/SFO Cyber Rampage", "shape": "dot", "title": "{\u0027type\u0027: \u0027campaign\u0027, \u0027id\u0027: \u0027campaign--7b34018c-a842-4059-81b9-edb07735e856\u0027, \u0027created\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027modified\u0027: \u00272024-02-07T14:48:34Z\u0027, \u0027name\u0027: \u0027Uganda/South Africa/SFO Cyber Rampage\u0027, \u0027description\u0027: \u0027Coordinated attacks on telecommunications and transportation infrastructure in Uganda, South Africa, and San Francisco.\u0027, \u0027first_seen\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027objective\u0027: \u0027Disrupt critical infrastructure in retaliation for diplomatic support of RSF\u0027}"}, {"color": "#45b7d1", "font": {"color": "black"}, "id": "infrastructure--f12641f4-47b6-40a8-a0d7-47a28b5d5cb4", "label": "San Francisco International Airport (SFO)", "shape": "dot", "title": "{\u0027type\u0027: \u0027infrastructure\u0027, \u0027id\u0027: \u0027infrastructure--f12641f4-47b6-40a8-a0d7-47a28b5d5cb4\u0027, \u0027created\u0027: \u00272024-02-07T14:48:34Z\u0027, \u0027modified\u0027: \u00272024-02-07T14:48:34Z\u0027, \u0027name\u0027: \u0027San Francisco International Airport (SFO)\u0027, \u0027description\u0027: \u0027Largest airport in the San Francisco Bay Area targeted for US foreign policy associations\u0027}"}, {"color": "#45b7d1", "font": {"color": "black"}, "id": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7", "label": "Cell-C Limited (AS37168)", "shape": "dot", "title": "{\u0027type\u0027: \u0027infrastructure\u0027, \u0027id\u0027: \u0027infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7\u0027, \u0027created\u0027: \u00272024-02-06T21:42:13Z\u0027, \u0027modified\u0027: \u00272024-02-06T21:42:13Z\u0027, \u0027name\u0027: \u0027Cell-C Limited (AS37168)\u0027, \u0027description\u0027: \u0027South African mobile network operator with 12.7 million subscribers\u0027}"}, {"color": "#45b7d1", "font": {"color": "black"}, "id": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321", "label": "MTN Uganda (AS20294)", "shape": "dot", "title": "{\u0027type\u0027: \u0027infrastructure\u0027, \u0027id\u0027: \u0027infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321\u0027, \u0027created\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027modified\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027name\u0027: \u0027MTN Uganda (AS20294)\u0027, \u0027description\u0027: \"Uganda\u0027s largest telecom company with 55% market share\"}"}, {"color": "#45b7d1", "font": {"color": "black"}, "id": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f", "label": "Airtel Uganda (AS37075)", "shape": "dot", "title": "{\u0027type\u0027: \u0027infrastructure\u0027, \u0027id\u0027: \u0027infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f\u0027, \u0027created\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027modified\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027name\u0027: \u0027Airtel Uganda (AS37075)\u0027, \u0027description\u0027: \u0027Major Ugandan mobile communications provider\u0027}"}, {"color": "#45b7d1", "font": {"color": "black"}, "id": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64", "label": "Uganda Telecom (AS21491)", "shape": "dot", "title": "{\u0027type\u0027: \u0027infrastructure\u0027, \u0027id\u0027: \u0027infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64\u0027, \u0027created\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027modified\u0027: \u00272024-02-06T21:12:11Z\u0027, \u0027name\u0027: \u0027Uganda Telecom (AS21491)\u0027, \u0027description\u0027: \u0027State-owned ICT network company in Uganda\u0027}"}, {"color": "#96ceb4", "font": {"color": "black"}, "id": "autonomous-system--bdf11fb1-97aa-4978-abe1-0c969ab9fc45", "label": "autonomous-system", "shape": "dot", "title": "{\u0027type\u0027: \u0027autonomous-system\u0027, \u0027id\u0027: \u0027autonomous-system--bdf11fb1-97aa-4978-abe1-0c969ab9fc45\u0027, \u0027number\u0027: 37168}"}, {"color": "#96ceb4", "font": {"color": "black"}, "id": "autonomous-system--f6334e21-d644-4e49-803b-e4cccdbdb339", "label": "autonomous-system", "shape": "dot", "title": "{\u0027type\u0027: \u0027autonomous-system\u0027, \u0027id\u0027: \u0027autonomous-system--f6334e21-d644-4e49-803b-e4cccdbdb339\u0027, \u0027number\u0027: 20294}"}, {"color": "#96ceb4", "font": {"color": "black"}, "id": "autonomous-system--fe734320-3694-4e46-b435-8e06ce1b435c", "label": "autonomous-system", "shape": "dot", "title": "{\u0027type\u0027: \u0027autonomous-system\u0027, \u0027id\u0027: \u0027autonomous-system--fe734320-3694-4e46-b435-8e06ce1b435c\u0027, \u0027number\u0027: 37075}"}, {"color": "#96ceb4", "font": {"color": "black"}, "id": "autonomous-system--f8e91156-96c5-42d3-a605-c0421c91ad7d", "label": "autonomous-system", "shape": "dot", "title": "{\u0027type\u0027: \u0027autonomous-system\u0027, \u0027id\u0027: \u0027autonomous-system--f8e91156-96c5-42d3-a605-c0421c91ad7d\u0027, \u0027number\u0027: 21491}"}, {"color": "#ffeead", "font": {"color": "black"}, "id": "url--be10ca5f-801a-467e-b7f9-967479128899", "label": "url", "shape": "dot", "title": "{\u0027type\u0027: \u0027url\u0027, \u0027id\u0027: \u0027url--be10ca5f-801a-467e-b7f9-967479128899\u0027, \u0027value\u0027: \u0027https://t.me/xAnonymousSudan\u0027}"}]);
+                  edges = new vis.DataSet([{"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "attributed-to", "title": "attributed-to", "to": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192"}, {"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "targets", "title": "targets", "to": "infrastructure--f12641f4-47b6-40a8-a0d7-47a28b5d5cb4"}, {"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "targets", "title": "targets", "to": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7"}, {"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "targets", "title": "targets", "to": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321"}, {"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "targets", "title": "targets", "to": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f"}, {"from": "campaign--7b34018c-a842-4059-81b9-edb07735e856", "label": "targets", "title": "targets", "to": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64"}, {"from": "infrastructure--a39b59e2-8f16-4f75-b062-08eae2b688c7", "label": "consists-of", "title": "consists-of", "to": "autonomous-system--bdf11fb1-97aa-4978-abe1-0c969ab9fc45"}, {"from": "infrastructure--8c2f7561-4e48-4fb5-828c-70b750797321", "label": "consists-of", "title": "consists-of", "to": "autonomous-system--f6334e21-d644-4e49-803b-e4cccdbdb339"}, {"from": "infrastructure--7f2caf35-a373-4522-8d5c-d18d7faaa78f", "label": "consists-of", "title": "consists-of", "to": "autonomous-system--fe734320-3694-4e46-b435-8e06ce1b435c"}, {"from": "infrastructure--4d6319fc-01ff-4ea5-83c0-a481ac813e64", "label": "consists-of", "title": "consists-of", "to": "autonomous-system--f8e91156-96c5-42d3-a605-c0421c91ad7d"}, {"from": "threat-actor--49da66c2-d301-4887-a571-97bf4f135192", "label": "uses", "title": "uses", "to": "url--be10ca5f-801a-467e-b7f9-967479128899"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 200, "springConstant": 0.08}, "maxVelocity": 50, "solver": "forceAtlas2Based", "timestep": 0.35, "stabilization": {"iterations": 150}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
